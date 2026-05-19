@@ -93,5 +93,5 @@ it('returns stored characters through pagination and exposes throttling', functi
         ->assertJsonPath('data.0.gender', CharacterGenderEnum::Male->value)
         ->assertJsonPath('data.0.image', 'https://rickandmortyapi.com/api/character/avatar/16.jpeg');
 
-    expect(Route::getRoutes()->getByName('characters.index')?->gatherMiddleware())->toContain('throttle:characters');
+    expect(Route::getRoutes()->getByName('characters')?->gatherMiddleware())->toContain('throttle:characters');
 });
