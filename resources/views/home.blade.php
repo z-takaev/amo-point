@@ -1,25 +1,56 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@extends('layouts.app')
 
-    <head>
-        <meta charset="utf-8">
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1"
-        >
+@section('title', config('app.name', 'Laravel'))
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
-    </head>
+@section('content')
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-10">
+            <div class="row g-3">
+                <div class="col-md-6 col-xl-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h2 class="h6 text-uppercase text-secondary">Блок 1</h2>
+                            <p class="mb-3">API-список персонажей.</p>
+                            <a
+                                class="btn btn-sm btn-outline-primary"
+                                href="{{ route('characters') }}"
+                            >
+                                Открыть
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-    <body>
-        <a href="{{ route('characters') }}">
-            Блок 1
-        </a>
+                <div class="col-md-6 col-xl-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h2 class="h6 text-uppercase text-secondary">Блок 2</h2>
+                            <p class="mb-3">Форма с динамической фильтрацией полей.</p>
+                            <a
+                                class="btn btn-sm btn-outline-primary"
+                                href="{{ route('testlist') }}"
+                            >
+                                Открыть
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-        <a href="{{ route('testlist') }}">
-            Блок 2
-        </a>
-
-    </body>
-
-</html>
+                <div class="col-md-6 col-xl-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h2 class="h6 text-uppercase text-secondary">Блок 3</h2>
+                            <p class="mb-3">Часовые визиты и распределение по городам.</p>
+                            <a
+                                class="btn btn-sm btn-outline-primary"
+                                href="{{ route('statistics.index') }}"
+                            >
+                                Открыть
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
