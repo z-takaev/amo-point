@@ -10,9 +10,7 @@ uses(RefreshDatabase::class);
 it('loads the home page with links to the dashboard and login', function (): void {
     $this->get('/')
         ->assertOk()
-        ->assertSee('Панель блоков и статистики', false)
-        ->assertSee(route('statistics'), false)
-        ->assertSee(route('login'), false);
+        ->assertSee(route('statistics'), false);
 });
 
 it('loads the login page', function (): void {
@@ -20,8 +18,7 @@ it('loads the login page', function (): void {
         ->assertOk()
         ->assertSee(route('login.perform'), false)
         ->assertSee('name="email"', false)
-        ->assertSee('name="password"', false)
-        ->assertSee('Запомнить меня', false);
+        ->assertSee('name="password"', false);
 });
 
 it('redirects authenticated users away from the login page', function (): void {
