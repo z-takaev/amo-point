@@ -5,18 +5,14 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Models\VisitEvent;
-use Illuminate\Http\Request;
+use App\Http\Requests\VisitEventRequest;
 use Illuminate\Http\Response;
 
 final class VisitEventController extends Controller
 {
-    public function store(Request $request): Response
+    public function store(VisitEventRequest $request): Response
     {
-        $validated = $request->validate([
-            'ip' => ['required', 'ip'],
-            'city' => ['required', 'string', 'max:255'],
-            'device' => ['required', 'string', 'max:255'],
-        ]);
+        $validated = $request->validated();
 
         VisitEvent::query()->create([
             'ip' => $validated['ip'],

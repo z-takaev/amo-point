@@ -11,7 +11,7 @@ it('loads the home page with links to the dashboard and login', function (): voi
     $this->get('/')
         ->assertOk()
         ->assertSee('Панель блоков и статистики', false)
-        ->assertSee(route('statistics.index'), false)
+        ->assertSee(route('statistics'), false)
         ->assertSee(route('login'), false);
 });
 
@@ -24,11 +24,19 @@ it('loads the login page', function (): void {
         ->assertSee('Запомнить меня', false);
 });
 
+it('redirects authenticated users away from the login page', function (): void {
+    $user = User::factory()->create();
+
+    $this->actingAs($user)
+        ->get(route('login'))
+        ->assertRedirect(route('dashboard'));
+});
+
 it('loads the statistics page', function (): void {
     $user = User::factory()->create();
 
     $this->actingAs($user)
-        ->get(route('statistics.index'))
+        ->get(route('statistics'))
         ->assertOk()
         ->assertSee('Статистика посещений', false)
         ->assertSee('cdn.jsdelivr.net/npm/chart.js', false)

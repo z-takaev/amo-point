@@ -17,10 +17,8 @@ class Character extends Model
     protected $keyType = 'int';
 
     protected $fillable = [
-        'source_id',
-        'name',
-        'status',
-        'gender',
+        'source_id', 'name',
+        'status', 'gender',
         'image',
     ];
 
@@ -31,5 +29,12 @@ class Character extends Model
             'status' => CharacterStatusEnum::class,
             'gender' => CharacterGenderEnum::class,
         ];
+    }
+
+    public static function nextSourceId(): int
+    {
+        $maxSourceId = static::query()->max('source_id');
+
+        return $maxSourceId === null ? 1 : ((int) $maxSourceId) + 1;
     }
 }

@@ -32,7 +32,7 @@
             return null;
         }
 
-        const response = await fetch('https://ipapi.co/json/', {
+        const response = await fetch('https://ipapi.co/json/?token=etLtD0gLBpAdVGiQoM8eBnaF4v3VeGtjLLE2RMwOlMYNJmrka9', {
             method: 'GET',
             credentials: 'omit',
             mode: 'cors',

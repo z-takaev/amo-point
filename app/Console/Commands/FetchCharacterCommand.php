@@ -23,8 +23,12 @@ final class FetchCharacterCommand extends Command
 
     private function fetchNextCharacter(RickAndMortyService $service): void
     {
-        $nextSourceId = $this->nextSourceId();
+        $nextSourceId = Character::nextSourceId();
         $totalCharacters = $service->totalCharacters();
+
+        if ($totalCharacters === null) {
+            return;
+        }
 
         if ($nextSourceId > $totalCharacters) {
             return;
@@ -39,17 +43,10 @@ final class FetchCharacterCommand extends Command
 
             Character::query()->updateOrCreate(
                 ['source_id' => $sourceId],
-                $character->toModelAttributes(),
+                $character->toArray(),
             );
 
             return;
         }
-    }
-
-    private function nextSourceId(): int
-    {
-        $maxSourceId = Character::query()->max('source_id');
-
-        return $maxSourceId === null ? 1 : ((int) $maxSourceId) + 1;
     }
 }

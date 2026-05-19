@@ -6,11 +6,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-final class VisitEvent extends Model
+class VisitEvent extends Model
 {
-    protected $fillable = [
-        'ip',
-        'city',
-        'device',
-    ];
+    protected $fillable = ['ip', 'city', 'device'];
 }

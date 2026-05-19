@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Route;
 uses(RefreshDatabase::class);
 
 it('protects the statistics page with auth middleware', function (): void {
-    expect(Route::has('statistics.index'))->toBeTrue();
-    expect(Route::getRoutes()->getByName('statistics.index')->gatherMiddleware())
+    expect(Route::has('statistics'))->toBeTrue();
+    expect(Route::getRoutes()->getByName('statistics')->gatherMiddleware())
         ->toContain('auth');
 
     $this->get('/statistics')

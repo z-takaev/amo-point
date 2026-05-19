@@ -5,21 +5,21 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
 final class LoginController extends Controller
 {
-    public function store(Request $request): RedirectResponse
+    public function __invoke(LoginRequest $request): RedirectResponse
     {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required', 'string'],
-        ]);
+        $validated = $request->validated();
 
-        if (! Auth::attempt($credentials, $request->boolean('remember'))) {
+        if (! Auth::attempt([
+            'email' => $validated['email'],
+            'password' => $validated['password'],
+        ])) {
             throw ValidationException::withMessages([
                 'email' => __('auth.failed'),
             ]);
@@ -27,6 +27,6 @@ final class LoginController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->route('statistics.index');
+        return redirect()->route('statistics');
     }
 }

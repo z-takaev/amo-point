@@ -59,7 +59,7 @@ it('logs api errors and returns safe defaults', function (): void {
 
     $service = app(RickAndMortyService::class);
 
-    expect($service->totalCharacters())->toBe(0)
+    expect($service->totalCharacters())->toBeNull()
         ->and($service->fetchCharacter(1))->toBeNull();
 
     Log::shouldHaveReceived('error')->twice();

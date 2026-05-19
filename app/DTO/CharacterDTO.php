@@ -35,7 +35,7 @@ final readonly class CharacterDTO
     /**
      * @return array{source_id:int,name:string,status:string,gender:string,image:string}
      */
-    public function toModelAttributes(): array
+    public function toArray(): array
     {
         return [
             'source_id' => $this->sourceId,

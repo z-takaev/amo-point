@@ -5,7 +5,10 @@
         <meta charset="UTF-8">
         <title>Title</title>
         <script src="https://code.jquery.com/jquery-1.8.3.js"></script>
-        <script src="/js/field-filter.js" defer></script>
+        <script
+            src="{{ asset('js/field-filter.js') }}"
+            defer
+        ></script>
     </head>
 
     <body>

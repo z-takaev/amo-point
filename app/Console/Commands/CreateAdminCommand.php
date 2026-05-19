@@ -6,23 +6,16 @@ namespace App\Console\Commands;
 
 use App\Models\User;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Hash;
 
 final class CreateAdminCommand extends Command
 {
     protected $signature = 'admin:create';
 
-    protected $description = 'Создать аккаунт для входа в dashboard';
+    protected $description = 'Создать аккаунт админа';
 
     public function handle(): int
     {
-        $user = $this->createOrUpdateAdmin();
-
-        $this->components->info(sprintf(
-            'Аккаунт готов: %s (%s)',
-            $user->name,
-            $user->email,
-        ));
+        $this->createOrUpdateAdmin();
 
         return self::SUCCESS;
     }
@@ -33,7 +26,7 @@ final class CreateAdminCommand extends Command
             ['email' => config('dashboard.admin.email')],
             [
                 'name' => config('dashboard.admin.name'),
-                'password' => Hash::make((string) config('dashboard.admin.password')),
+                'password' => (string) config('dashboard.admin.password'),
             ],
         );
     }

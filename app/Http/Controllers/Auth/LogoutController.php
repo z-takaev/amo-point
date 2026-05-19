@@ -11,9 +11,9 @@ use Illuminate\Support\Facades\Auth;
 
 final class LogoutController extends Controller
 {
-    public function store(Request $request): RedirectResponse
+    public function __invoke(Request $request): RedirectResponse
     {
-        Auth::guard('web')->logout();
+        Auth::logout();
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();

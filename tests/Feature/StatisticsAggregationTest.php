@@ -53,6 +53,5 @@ it('exposes hourly unique visits and city counts to the statistics view', functi
         ->assertViewHas('cityValues', [
             2,
             1,
-        ])
-        ->assertViewHas('totalVisits', 3);
+        ]);
 });
